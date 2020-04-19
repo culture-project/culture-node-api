@@ -21,3 +21,10 @@ Route.get('/', () => {
 })
 
 Route.get('/main-teste', 'TesteController.index');
+
+Route.get('/eventos', 'EventoController.index');
+
+Route.group(() => {
+  Route.get('', 'EventoController.index');
+  Route.get('/:id', 'EventoController.eventById')
+}).prefix('eventos')
