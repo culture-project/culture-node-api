@@ -26,5 +26,6 @@ Route.get('/eventos', 'EventoController.index');
 
 Route.group(() => {
   Route.get('', 'EventoController.index');
-  Route.get('/:id', 'EventoController.eventById')
+  Route.get('/:id', 'EventoController.eventoById');
+  Route.get('/:type/:param', 'EventoController.eventoBy')
 }).prefix('eventos')
