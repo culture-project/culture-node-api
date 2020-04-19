@@ -28,4 +28,6 @@ Route.group(() => {
   Route.get('', 'EventoController.index');
   Route.get('/:id', 'EventoController.eventoById');
   Route.get('/:type/:param', 'EventoController.eventoBy')
+
+  Route.post('', 'EventoController.store')
 }).prefix('eventos')

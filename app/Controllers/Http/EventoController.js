@@ -10,29 +10,31 @@ const Usuario = use('App/Models/Usuario');
 class EventoController {
 
   async index ({ request, response, view }) {
-    const events = Evento.all();
+    const events = await Evento.all();
     
     return events;
   }
 
-  async eventoById({request}){
+  async eventoById({request, response}){
     const id = request.params.id;
-    const events = Evento.findByOrFail('codEvento', id);
-    
-    return events;
+    const event = await Evento.findBy('codEvento', id);
+
+    return event;
   }
 
   async eventoBy({request}){
     const type = request.params.type;
     const param = decodeURI(request.params.param);
 
-    const events = Evento.query().where(type, 'like', param).fetch()
+    const events = await Evento.query().where(type, 'like', param).fetch()
 
     return events;
   }
   
   async store ({ request, response }) {
-
+    const data = request.body;
+    const event = await Evento.create(data);
+    return event;
   }
 
   async show ({ params, request, response, view }) {

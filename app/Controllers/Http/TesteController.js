@@ -4,7 +4,7 @@ const db = use('Database');
 class TesteController {
 
     async index() {
-        return db.from('tbusuario')
+        return db.from('tbevento')
     }
 }
 
