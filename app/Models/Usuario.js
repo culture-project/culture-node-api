@@ -7,6 +7,16 @@ class Usuario extends Model {
     static get table () {
         return 'tbusuario'
     }
+    static get deleteTimestamp () {
+        return null
+    }
+    static get createdAtColumn () {
+        return null
+    }
+    
+    static get updatedAtColumn () {
+        return null
+    }
 }
 
 module.exports = Usuario

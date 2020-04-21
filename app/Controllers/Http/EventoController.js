@@ -5,7 +5,6 @@
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
 const Evento = use('App/Models/Evento');
-const Usuario = use('App/Models/Usuario');
 
 class EventoController {
 

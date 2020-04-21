@@ -17,12 +17,9 @@
 const Route = use('Route')
 
 Route.get('/', () => {
-  return { greeting: 'Hello world in JSON' }
-})
+  return { culture:'tente acessar a documentação no site do culture.'}
+});
 
-Route.get('/main-teste', 'TesteController.index');
-
-Route.get('/eventos', 'EventoController.index');
 
 Route.group(() => {
   Route.get('', 'EventoController.index');
@@ -31,3 +28,12 @@ Route.group(() => {
 
   Route.post('', 'EventoController.store')
 }).prefix('eventos')
+
+Route.group(() => {
+  Route.get('', 'UsuarioController.index');
+  Route.get('/:id', 'UsuarioController.userById');
+
+  Route.post('/login', 'UsuarioController.login')
+
+  Route.post('', 'UsuarioController.store');
+}).prefix('usuarios')
