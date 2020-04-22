@@ -5,6 +5,7 @@
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
 const Evento = use('App/Models/Evento');
+const Database = use('Database')
 
 class EventoController {
 
@@ -31,9 +32,20 @@ class EventoController {
   }
 
   async eventoRecente({request}){
-    return {teste:"teste"};
+    const events = Evento.query().orderBy('dataInicioEvento', 'desc').fetch();
+
+    return events;
   }
   
+  async eventoPesquisa({request}){
+    const data = request.params.param;
+
+    const eventsName = await Database.table('tbevento').where('nomeEvento','like', '%'+data+'%');
+    const eventsDesc = await Database.table('tbevento').where('descricaoEvento','like', '%'+data+'%');
+
+    return {eventsName, eventsDesc};
+  }
+
   async store ({ request, response }) {
     const data = request.body;
     const event = await Evento.create(data);

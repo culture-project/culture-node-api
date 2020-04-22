@@ -22,9 +22,10 @@ Route.get('/', () => {
 
 Route.group(() => {
   Route.get('', 'EventoController.index');
+  Route.get('/recentes', 'EventoController.eventoRecente');
+  Route.get('/pesquisa/:param', 'EventoController.eventoPesquisa');
   Route.get('/:id', 'EventoController.eventoById');
   Route.get('/:type/:param', 'EventoController.eventoBy');
-  Route.get('/rec', 'EventoController.index');
 
   Route.post('', 'EventoController.store');
 }).prefix('eventos')
