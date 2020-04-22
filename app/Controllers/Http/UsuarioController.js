@@ -48,9 +48,11 @@ class UsuarioController {
 
     const isSame = await Hash.verify(senhaUsuario, senhaUsuarioHash)
 
-    
-    return isSame;
-
+    if(isSame){
+      return {login:isSame, usuario};
+    }else{
+      return {login:'false', error: 'Email ou senha invalida'}
+    }
   }
 
   async show ({ params, request, response, view }) {

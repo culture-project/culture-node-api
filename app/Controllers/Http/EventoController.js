@@ -29,6 +29,10 @@ class EventoController {
 
     return events;
   }
+
+  async eventoRecente({request}){
+    return {teste:"teste"};
+  }
   
   async store ({ request, response }) {
     const data = request.body;

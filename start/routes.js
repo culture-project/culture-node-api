@@ -20,20 +20,20 @@ Route.get('/', () => {
   return { culture:'tente acessar a documentação no site do culture.'}
 });
 
-
 Route.group(() => {
   Route.get('', 'EventoController.index');
   Route.get('/:id', 'EventoController.eventoById');
-  Route.get('/:type/:param', 'EventoController.eventoBy')
+  Route.get('/:type/:param', 'EventoController.eventoBy');
+  Route.get('/rec', 'EventoController.index');
 
-  Route.post('', 'EventoController.store')
+  Route.post('', 'EventoController.store');
 }).prefix('eventos')
+
 
 Route.group(() => {
   Route.get('', 'UsuarioController.index');
   Route.get('/:id', 'UsuarioController.userById');
 
-  Route.post('/login', 'UsuarioController.login')
-
+  Route.post('/login', 'UsuarioController.login');
   Route.post('', 'UsuarioController.store');
 }).prefix('usuarios')
