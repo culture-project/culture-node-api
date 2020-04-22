@@ -4,7 +4,7 @@
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
-const argon2 = require('argon2');
+const Hash = use('Hash');
 const Database = use('Database')
 const Usuario = use('App/Models/Usuario');
 
@@ -25,9 +25,15 @@ class UsuarioController {
 
   async store ({ request }) {
     let data = request.body;
-    data.senhaUsuario = await argon2.hash(data.senhaUsuario);
-    const user = await Usuario.create(data);
+    data.senhaUsuario = await Hash.make(data.senhaUsuario, );
 
+    let emailExist = await Usuario.findBy('emailusuario', data.emailUsuario);
+    
+    if(emailExist){
+      return { error: 'Email já cadastrado'}
+    }
+
+    const user = await Usuario.create(data);
 
     return user;
   }
@@ -37,12 +43,13 @@ class UsuarioController {
 
     let usuario =  await Database.table('tbusuario').where('emailusuario', data.emailUsuario).first();
 
-    let senhaUsuario = data.senhaUsuario.toString();
-    let senhaUsuarioHash = usuario.senhaUsuario.toString();
+    let senhaUsuario = data.senhaUsuario;
+    let senhaUsuarioHash = usuario.senhaUsuario;
 
-    let isSame = await argon2.verify(senhaUsuarioHash, senhaUsuario);
+    const isSame = await Hash.verify(senhaUsuario, senhaUsuarioHash)
 
-    return senhaUsuarioHash;
+    
+    return isSame;
 
   }
 
