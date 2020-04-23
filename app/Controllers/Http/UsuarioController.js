@@ -43,16 +43,20 @@ class UsuarioController {
 
     let usuario =  await Database.table('tbusuario').where('emailusuario', data.emailUsuario).first();
 
-    let senhaUsuario = data.senhaUsuario;
-    let senhaUsuarioHash = usuario.senhaUsuario;
-
-    const isSame = await Hash.verify(senhaUsuario, senhaUsuarioHash)
-
-    if(isSame){
-      return {login:isSame, usuario};
-    }else{
-      return {login:'false', error: 'Email ou senha invalida'}
+    if(usuario){
+      let senhaUsuario = data.senhaUsuario;
+      let senhaUsuarioHash = usuario.senhaUsuario;
+      
+      const isSame = await Hash.verify(senhaUsuario, senhaUsuarioHash)
+      
+      if(isSame){
+        return {login:isSame, usuario};
+      }else{
+        return {login:'false', error: 'Senha invalido'}
+      }
     }
+    return {login:'false', error: 'Email invalido'}
+    
   }
 
   async show ({ params, request, response, view }) {
