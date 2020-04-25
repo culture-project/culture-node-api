@@ -20,6 +20,10 @@ Route.get('/', () => {
   return { culture:'tente acessar a documentação no site do culture.'}
 });
 
+Route.get('/teste', 'TesteController.index');
+
+
+//Eventos
 Route.group(() => {
   Route.get('', 'EventoController.index');
   Route.get('/recentes', 'EventoController.eventoRecente');
@@ -28,9 +32,9 @@ Route.group(() => {
   Route.get('/:type/:param', 'EventoController.eventoBy');
 
   Route.post('', 'EventoController.store');
-}).prefix('eventos')
+}).prefix('eventos');
 
-
+//Usuario
 Route.group(() => {
   Route.get('', 'UsuarioController.index');
   Route.get('/:id', 'UsuarioController.userById');
@@ -39,6 +43,7 @@ Route.group(() => {
   Route.post('', 'UsuarioController.store');
 }).prefix('usuarios')
 
+//Categoria
 Route.group(() => {
   Route.get('' , 'CategoriaController.index');
 
@@ -46,3 +51,14 @@ Route.group(() => {
 
   Route.delete('/:id' , 'CategoriaController.destroy');
 }).prefix('categorias')
+
+
+//Classificacao
+Route.group(() => {
+  Route.get('', 'ClassificacaoIndicativaController.index');
+  Route.get('/:id', 'ClassificacaoIndicativaController.getById');
+
+  Route.post('/add', 'ClassificacaoIndicativaController.store');
+
+  Route.put('/edit', 'ClassificacaoIndicativaController.update');;
+}).prefix('classificacao');

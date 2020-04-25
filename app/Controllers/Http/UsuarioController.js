@@ -18,7 +18,7 @@ class UsuarioController {
  
   async userById({request}){
     const id = request.params.id;
-    let user = await Usuario.findBy('codUsuario', id);
+    let user = await Usuario.find(id);
 
     return {user};
   }
@@ -41,7 +41,7 @@ class UsuarioController {
   async login ({ request }){
     let data = request.body;
 
-    let usuario =  await Database.table('tbusuario').where('emailusuario', data.emailUsuario).first();
+    let usuario =  await Database.table('usuario').where('emailusuario', data.emailUsuario).first();
 
     if(usuario){
       let senhaUsuario = data.senhaUsuario;
