@@ -17,7 +17,7 @@ class EventoController {
 
   async eventoById({request, response}){
     const id = request.params.id;
-    const event = await Evento.findBy('codEvento', id);
+    const event = await Evento.find(id);
 
     return event;
   }
@@ -40,8 +40,8 @@ class EventoController {
   async eventoPesquisa({request}){
     const data = request.params.param;
 
-    const eventsName = await Database.table('tbevento').where('nomeEvento','like', '%'+data+'%');
-    const eventsDesc = await Database.table('tbevento').where('descricaoEvento','like', '%'+data+'%');
+    const eventsName = await Database.table('evento').where('nomeEvento','like', '%'+data+'%');
+    const eventsDesc = await Database.table('evento').where('descricaoEvento','like', '%'+data+'%');
 
     return {eventsName, eventsDesc};
   }
@@ -59,7 +59,6 @@ class EventoController {
   async update ({ params, request, response }) {
 
   }
-
 
   async destroy ({ params, request, response }) {
 
