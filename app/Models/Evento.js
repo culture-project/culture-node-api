@@ -5,7 +5,7 @@ const Model = use('Model')
 
 class Evento extends Model {
     static get table () {
-        return 'tbevento'
+        return 'evento'
     }
     static get deleteTimestamp () {
         return null

@@ -38,3 +38,11 @@ Route.group(() => {
   Route.post('/login', 'UsuarioController.login');
   Route.post('', 'UsuarioController.store');
 }).prefix('usuarios')
+
+Route.group(() => {
+  Route.get('' , 'CategoriaController.index');
+
+  Route.post('' , 'CategoriaController.store');
+
+  Route.delete('/:id' , 'CategoriaController.destroy');
+}).prefix('categorias')
