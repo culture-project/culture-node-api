@@ -46,8 +46,10 @@ Route.group(() => {
 //Categoria
 Route.group(() => {
   Route.get('' , 'CategoriaController.index');
+  Route.get('/:id' , 'CategoriaController.show');
 
   Route.post('' , 'CategoriaController.store');
+  Route.post('/edit/:id' , 'CategoriaController.update');
 
   Route.delete('/:id' , 'CategoriaController.destroy');
 }).prefix('categorias')

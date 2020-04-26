@@ -46,39 +46,26 @@ class CategoriaController {
    * @param {View} ctx.view
    */
   async show ({ params, request, response, view }) {
+      const id = request.params.id;
+      const categoria = await Categoria.find(id);
+
+      return categoria;
   }
 
-  /**
-   * Render a form to update an existing categoria.
-   * GET categorias/:id/edit
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
   async edit ({ params, request, response, view }) {
   }
 
-  /**
-   * Update categoria details.
-   * PUT or PATCH categorias/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
   async update ({ params, request, response }) {
+      const id =  request.params.id;
+      const categoria = await Categoria.find(id);
+      const data = request.only(["nomeCategoria"]);
+      
+      categoria.merge(data);
+      await categoria.save();
+
+      return categoria;
   }
 
-  /**
-   * Delete a categoria with id.
-   * DELETE categorias/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
   async destroy ({ params, request, response }) {
     const id = request.params.id;
 
