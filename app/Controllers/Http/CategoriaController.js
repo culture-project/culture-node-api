@@ -56,9 +56,8 @@ class CategoriaController {
   }
 
   async update ({ params, request, response }) {
-      const id =  request.params.id;
-      const categoria = await Categoria.find(id);
-      const data = request.only(["nomeCategoria"]);
+      const data =  request.body;
+      const categoria = await Categoria.find(data.id);
       
       categoria.merge(data);
       await categoria.save();

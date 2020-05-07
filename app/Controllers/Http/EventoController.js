@@ -61,7 +61,11 @@ class EventoController {
   }
 
   async destroy ({ params, request, response }) {
+      const id = request.params.id;
+      const event = await Evento.find(id);
+      await event.delete();
 
+      return true;
   }
 
 }
