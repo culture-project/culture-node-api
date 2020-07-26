@@ -52,7 +52,7 @@ class UsuarioController {
       if(isSame){
         return {login:isSame, usuario};
       }else{
-        return {login:'false', error: 'Senha invalido'}
+        return {login:false , error: 'Senha invalido'}
       }
     }
     return {login:'false', error: 'Email invalido'}

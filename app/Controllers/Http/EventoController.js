@@ -57,6 +57,12 @@ class EventoController {
   }
 
   async update ({ params, request, response }) {
+    const data = request.body;
+    const event = await Evento.find(data.id);
+    event.merge(data);
+    event.save();
+
+    return event;
 
   }
 
@@ -66,6 +72,26 @@ class EventoController {
       await event.delete();
 
       return true;
+  }
+
+  async aprove ({params, request, response}) {
+    const data = request.body;
+    const event = await Evento.find(data.id);
+    event.isAprovado = true;
+    event.merge(data);
+    event.save();
+
+    return event;
+  }
+
+  async desprove ({params, request, response}) {
+    const data = request.body;
+    const event = await Evento.find(data.id);
+    event.isAprovado = false;
+    event.merge(data);
+    event.save();
+
+    return event;
   }
 
 }

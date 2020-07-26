@@ -31,7 +31,11 @@ Route.group(() => {
   Route.get('/:id', 'EventoController.eventoById');
   Route.get('/:type/:param', 'EventoController.eventoBy');
 
+  Route.post('/aprovar' , 'EventoController.aprove');
+  Route.post('/desaprovar' , 'EventoController.desprove');
   Route.post('', 'EventoController.store');
+
+  Route.put('', 'EventoController.update');
 }).prefix('eventos');
 
 //Usuario
